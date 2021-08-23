@@ -1,5 +1,4 @@
 require("dotenv").config();
-const fetch = require("node-fetch");
 const app = require('./routes/api_route');
 
 
