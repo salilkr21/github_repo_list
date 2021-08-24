@@ -1,19 +1,20 @@
 const express = require('express');
 require("dotenv").config();
-const fetch = require("node-fetch");
+var fetch = require("node-fetch");
 const app = express();
-
 app.get('/:username', (req, res) => {
 
+  
     var user_name = req.params.username;
     var url = 'https://api.github.com/users/' + user_name + '/repos';
 
-    fetch(url).then(response => response.json()).then((data) => {
+    fetch(url).then(async (response) => {
 
-        for (i = 0; i < data.length; i++) {
+        var data = await response.json();
+
+        for (var i = 0; i < data.length; i++) {
 
             res.write((i + 1) + " " + (data[i].name) + "\n");
-
         }
 
         res.send();
